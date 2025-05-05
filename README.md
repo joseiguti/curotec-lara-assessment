@@ -28,6 +28,12 @@ composer install
 npm install
 ```
 
+1b. Copy the environment configuration file:
+
+```bash
+cp .env.example .env
+```
+
 2. Configure the `.env` file (PostgreSQL by default):
 
 ```env
@@ -37,6 +43,12 @@ DB_PORT=5432
 DB_DATABASE=curotec
 DB_USERNAME=your_pg_user
 DB_PASSWORD=your_pg_password
+```
+
+2b. Generate the application key:
+
+```bash
+php artisan key:generate
 ```
 
 3. Run the migrations and seeders:
@@ -88,4 +100,3 @@ Due to time constraints, the following items are either partially implemented or
 - Infinite scroll and query optimization not yet applied
 
 The project is structured with clean separation and scalability in mind to easily support these features.
-
