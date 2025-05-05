@@ -5,18 +5,34 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+/**
+ * Class CategoryController
+ *
+ * Controller to manage category-related operations.
+ * Includes methods to list, show, create, update, and delete categories.
+ */
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a list of top-level categories (no parent).
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //
+        $categories = Category::with('children')
+            ->whereNull('parent_id')
+            ->get();
+
+        return response()->json([
+            'categories' => $categories
+        ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new category.
+     *
+     * @return void
      */
     public function create()
     {
@@ -24,7 +40,10 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created category in the database.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return void
      */
     public function store(Request $request)
     {
@@ -32,7 +51,10 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified category.
+     *
+     * @param \App\Models\Category $category
+     * @return void
      */
     public function show(Category $category)
     {
@@ -40,7 +62,10 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified category.
+     *
+     * @param \App\Models\Category $category
+     * @return void
      */
     public function edit(Category $category)
     {
@@ -48,7 +73,11 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified category in the database.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Category $category
+     * @return void
      */
     public function update(Request $request, Category $category)
     {
@@ -56,7 +85,10 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified category from the database.
+     *
+     * @param \App\Models\Category $category
+     * @return void
      */
     public function destroy(Category $category)
     {

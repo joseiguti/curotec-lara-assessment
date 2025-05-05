@@ -1,66 +1,91 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Curotec Laravel Assessment
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a technical assessment developed using **Laravel 10**, **Vue 3**, **Inertia.js**, **Pinia**, and **PostgreSQL**. It demonstrates a full-stack task management system with authentication, task categorization, and reactive state management.
 
-## About Laravel
+## Scope of Work Completed
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The following items were implemented within the timeframe:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Laravel + Vue + Inertia full-stack setup with Breeze
+- User authentication (login/register)
+- Task CRUD (create, read, update, delete)
+- Categories and subcategories (up to 2 levels)
+- Tasks linked to categories
+- Form validation (frontend + backend)
+- Frontend fully reactive with Composition API + Pinia
+- Modular component structure (form, list, composables)
+- Task filtering by category (basic level)
+- Feature and relationship unit tests (100% passing)
+- Initial seeders for categories, tasks, and default user
+- Documentation for project setup and testing
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Installation Instructions
 
-## Learning Laravel
+1. Clone the repository and install backend and frontend dependencies:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+composer install
+npm install
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. Configure the `.env` file (PostgreSQL by default):
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=curotec
+DB_USERNAME=your_pg_user
+DB_PASSWORD=your_pg_password
+```
 
-## Laravel Sponsors
+3. Run the migrations and seeders:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+php artisan migrate:fresh --seed
+```
 
-### Premium Partners
+4. Start development servers:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+php artisan serve
+npm run dev
+```
 
-## Contributing
+## Default User
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+You can log in using the pre-created user:
 
-## Code of Conduct
+```text
+Email: me@joseiguti.com
+Password: aneasywaytolivebetter
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Testing
 
-## Security Vulnerabilities
+All feature tests are located in `tests/Feature/TaskTest.php`.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+To run the tests:
 
-## License
+```bash
+php artisan optimize:clear
+./vendor/bin/phpunit
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Expected output: 100% passing with no errors or failures.
+
+---
+
+The project is structured to be extendable, with clearly separated logic (API routes, Vue composables, modular components, centralized state). Advanced filters, sorting, and infinite scrolling were outlined but deprioritized due to time constraints.
+
+## Notes and Limitations
+
+Due to time constraints, the following items are either partially implemented or planned:
+
+- Nested category selection in the UI (currently one level deep)
+- Advanced filtering (by status, priority, date) is pending
+- Priority and due date fields are ready in schema but not yet active in the UI
+- Infinite scroll and query optimization not yet applied
+
+The project is structured with clean separation and scalability in mind to easily support these features.
+
